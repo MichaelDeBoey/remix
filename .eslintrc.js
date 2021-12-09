@@ -41,6 +41,10 @@ module.exports = {
         "templates/**/*.*",
       ],
       rules: {
+        "sort-imports": [
+          "error",
+          { ignoreCase: true, ignoreDeclarationSort: true },
+        ],
         "prefer-let/prefer-let": OFF,
         "prefer-const": WARN,
 

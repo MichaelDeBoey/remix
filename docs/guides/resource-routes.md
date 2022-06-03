@@ -86,8 +86,8 @@ app/routes/reports/$id[.]pdf.ts
 To handle `GET` requests export a loader function:
 
 ```ts
-import { json } from "@remix-run/node"; // or "@remix-run/cloudflare"
 import type { LoaderFunction } from "@remix-run/node"; // or "@remix-run/cloudflare"
+import { json } from "@remix-run/server";
 
 export const loader: LoaderFunction = async ({
   request,
@@ -129,7 +129,7 @@ Resource routes can be used to handle webhooks. For example, you can create a we
 
 ```ts
 import type { ActionFunction } from "@remix-run/node"; // or "@remix-run/cloudflare"
-import { json } from "@remix-run/node"; // or "@remix-run/cloudflare"
+import { json } from "@remix-run/server";
 import crypto from "crypto";
 
 export const action: ActionFunction = async ({

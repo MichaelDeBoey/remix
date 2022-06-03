@@ -549,7 +549,7 @@ export default function SomeRouteComponent() {
 Each route can define a "loader" function that will be called on the server before rendering to provide data to the route. You may think of this as a "GET" request handler in that you should not be reading the body of the request; that is the job of an [`action`](#action).
 
 ```js
-import { json } from "@remix-run/node"; // or "@remix-run/cloudflare"
+import { json } from "@remix-run/server";
 
 export const loader = async () => {
   // The `json` function converts a serializable object into a JSON response
@@ -560,8 +560,8 @@ export const loader = async () => {
 
 ```ts
 // Typescript
-import { json } from "@remix-run/node"; // or "@remix-run/cloudflare"
 import type { LoaderFunction } from "@remix-run/node"; // or "@remix-run/cloudflare"
+import { json } from "@remix-run/server";
 
 export const loader: LoaderFunction = async () => {
   return json({ ok: true });
@@ -573,8 +573,8 @@ This function is only ever run on the server. On the initial server render it wi
 Using the database ORM Prisma as an example:
 
 ```tsx lines=[1-2,6-8,11]
-import { json } from "@remix-run/node"; // or "@remix-run/cloudflare"
 import { useLoaderData } from "@remix-run/react";
+import { json } from "@remix-run/server";
 
 import { prisma } from "../db";
 
@@ -684,7 +684,7 @@ export const loader: LoaderFunction = async () => {
 Using the `json` helper simplifies this so you don't have to construct them yourself, but these two examples are effectively the same!
 
 ```tsx
-import { json } from "@remix-run/node"; // or "@remix-run/cloudflare"
+import { json } from "@remix-run/server";
 
 export const loader: LoaderFunction = async () => {
   const users = await fakeDb.users.findMany();
@@ -695,7 +695,7 @@ export const loader: LoaderFunction = async () => {
 You can see how `json` just does a little of the work to make your loader a lot cleaner. You can also use the `json` helper to add headers or a status code to your response:
 
 ```tsx
-import { json } from "@remix-run/node"; // or "@remix-run/cloudflare"
+import { json } from "@remix-run/server";
 
 export const loader: LoaderFunction = async ({
   params,
@@ -724,8 +724,8 @@ Along with returning responses, you can also throw Response objects from your lo
 Here is a full example showing how you can create utility functions that throw responses to stop code execution in the loader and move over to an alternative UI.
 
 ```ts filename=app/db.ts
-import { json } from "@remix-run/node"; // or "@remix-run/cloudflare"
 import type { ThrownResponse } from "@remix-run/react";
+import { json } from "@remix-run/server"
 
 export type InvoiceNotFoundResponse = ThrownResponse<
   404,
@@ -742,7 +742,7 @@ export function getInvoice(id, user) {
 ```
 
 ```ts filename=app/http.ts
-import { redirect } from "@remix-run/node"; // or "@remix-run/cloudflare"
+import { redirect } from "@remix-run/server";
 
 import { getSession } from "./session";
 
@@ -838,8 +838,8 @@ Actions have the same API as loaders, the only difference is when they are calle
 This enables you to co-locate everything about a data set in a single route module: the data read, the component that renders the data, and the data writes:
 
 ```tsx
-import { json, redirect } from "@remix-run/node"; // or "@remix-run/cloudflare"
 import { Form } from "@remix-run/react";
+import { json, redirect } from "@remix-run/server";
 
 import { fakeGetTodos, fakeCreateTodo } from "~/utils/db";
 import { TodoList } from "~/components/TodoList";
@@ -1286,7 +1286,7 @@ Here are a couple of common use-cases:
 
 It's common for root loaders to return data that never changes, like environment variables to be sent to the client app. In these cases you never need the root loader to be called again. For this case, you can simply `return false`.
 
-```js [10]
+```js lines=[10]
 export const loader = async () => {
   return json({
     ENV: {
@@ -1331,7 +1331,7 @@ And lets say the UI looks something like this:
 
 The `activity.tsx` loader can use the search params to filter the list, so visiting a URL like `/projects/design-revamp/activity?search=image` could filter the list of results. Maybe it looks something like this:
 
-```js [2,8]
+```js lines=[2,8]
 export async function loader({ request, params }) {
   const url = new URL(request.url);
   return json(

@@ -13,13 +13,13 @@ export {
   createSessionStorage,
 } from "./implementations.ts";
 
+export { json, redirect } from "@remix-run/server";
+
 export {
   createSession,
   isCookie,
   isSession,
-  json,
   MaxPartSizeExceededError,
-  redirect,
   unstable_composeUploadHandlers,
   unstable_createMemoryUploadHandler,
   unstable_parseMultipartFormData,

@@ -4,7 +4,6 @@ export {
   composeUploadHandlers as unstable_composeUploadHandlers,
   parseMultipartFormData as unstable_parseMultipartFormData,
 } from "./formData";
-export { json, redirect } from "./responses";
 export { createRequestHandler } from "./server";
 export {
   createSession,
@@ -26,8 +25,6 @@ export type {
   CreateSessionStorageFunction,
   IsCookieFunction,
   IsSessionFunction,
-  JsonFunction,
-  RedirectFunction,
 } from "./interface";
 
 // Remix server runtime packages should re-export these types
@@ -70,3 +67,6 @@ export type {
   MemoryUploadHandlerOptions,
   MemoryUploadHandlerFilterArgs,
 } from "./reexport";
+
+export type { JsonFunction, RedirectFunction } from "@remix-run/server";
+export { json, redirect } from "@remix-run/server";

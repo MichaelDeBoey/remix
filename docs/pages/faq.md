@@ -13,11 +13,9 @@ This is probably not different than what you were doing before Remix, it might j
 
 We recommend you create a function that validates the user session that can be added to any routes that require it.
 
-```tsx filename=app/session.js lines=[9-22]
-import {
-  createCookieSessionStorage,
-  redirect,
-} from "@remix-run/node"; // or "@remix-run/cloudflare"
+```tsx filename=app/session.js lines=[7-20]
+import { createCookieSessionStorage } from "@remix-run/node"; // or "@remix-run/cloudflare"
+import { redirect } from "@remix-run/server";
 
 // somewhere you've got a session storage
 const { getSession } = createCookieSessionStorage();

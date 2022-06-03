@@ -254,8 +254,8 @@ Now Remix can prefetch, load, and unload the styles for `button.css`, `primary-b
 An initial reaction to this is that routes have to know more than you want them to. Keep in mind each component must be imported already, so it's not introducing a new dependency, just some boilerplate to get the assets. For example, consider a product category page like this:
 
 ```tsx filename=app/routes/$category.js lines=[4-8,24-31]
-import { json } from "@remix-run/node"; // or "@remix-run/cloudflare"
 import { useLoaderData } from "@remix-run/react";
+import { json } from "@remix-run/server";
 
 import { TileGrid } from "~/components/tile-grid";
 import { ProductTile } from "~/components/product-tile";

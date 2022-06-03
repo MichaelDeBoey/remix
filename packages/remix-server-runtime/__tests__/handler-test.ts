@@ -1,4 +1,5 @@
-import { json } from "../responses";
+import { json } from "@remix-run/server";
+
 import { createRequestHandler } from "../server";
 
 describe("createRequestHandler", () => {

@@ -19,7 +19,7 @@ TypeError: Cannot read properties of undefined (reading 'root')
 For example, you can't import "fs-extra" directly into a route module:
 
 ```jsx bad filename=app/routes/index.jsx lines=[2] nocopy
-import { json } from "@remix-run/node"; // or "@remix-run/cloudflare"
+import { json } from "@remix-run/server";
 import fs from "fs-extra";
 
 export async function loader() {
@@ -40,7 +40,7 @@ export * from "fs-extra";
 And then change our import in the route to the new "wrapper" module:
 
 ```jsx filename=app/routes/index.jsx lines=[3]
-import { json } from "@remix-run/node"; // or "@remix-run/cloudflare"
+import { json } from "@remix-run/server";
 
 import fs from "../utils/fs-extra.server";
 

@@ -14,6 +14,7 @@
   "license": "MIT",
   "sideEffects": false,
   "dependencies": {
+    "@remix-run/server": "1.5.1",
     "@remix-run/server-runtime": "1.5.1",
     "mime": "^3.0.0"
   },

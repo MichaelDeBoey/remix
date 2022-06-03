@@ -23,8 +23,8 @@ Each [route module][route-module] can export a component and a [`loader`][loader
 
 ```tsx filename=app/routes/products.tsx lines=[1-3,5-10,13]
 import type { LoaderFunction } from "@remix-run/node"; // or "@remix-run/cloudflare"
-import { json } from "@remix-run/node"; // or "@remix-run/cloudflare"
 import { useLoaderData } from "@remix-run/react";
+import { json } from "@remix-run/server";
 
 export const loader: LoaderFunction = async () => {
   return json([
@@ -75,8 +75,8 @@ Given the following URLs, the params would be parsed as follows:
 These params are most useful for looking up data:
 
 ```tsx filename=routes/users/$userId/projects/$projectId.tsx lines=[8,9]
-import { json } from "@remix-run/node"; // or "@remix-run/cloudflare"
 import type { LoaderFunction } from "@remix-run/node"; // or "@remix-run/cloudflare"
+import { json } from "@remix-run/server";
 
 export const loader: LoaderFunction = async ({
   params,
@@ -117,8 +117,8 @@ While you may be uncomfortable throwing errors like this with `invariant` when i
 Remix polyfills the `fetch` API on your server so it's very easy to fetch data from existing JSON APIs. Instead of managing state, errors, race conditions, and more yourself, you can do the fetch from your loader (on the server) and let Remix handle the rest.
 
 ```tsx filename=app/routes/gists.jsx lines=[5]
-import { json } from "@remix-run/node"; // or "@remix-run/cloudflare"
 import { useLoaderData } from "@remix-run/react";
+import { json } from "@remix-run/server";
 
 export async function loader() {
   const res = await fetch("https://api.github.com/gists");
@@ -155,8 +155,8 @@ And then your routes can import it and make queries against it:
 
 ```tsx filename=app/routes/products/$categoryId.tsx
 import type { LoaderFunction } from "@remix-run/node"; // or "@remix-run/cloudflare"
-import { json } from "@remix-run/node"; // or "@remix-run/cloudflare"
 import { useLoaderData } from "@remix-run/react";
+import { json } from "@remix-run/server";
 
 import { db } from "~/db.server";
 
@@ -187,8 +187,8 @@ If you are using TypeScript, you can use type inference to use Prisma Client gen
 
 ```tsx filename=tsx filename=app/routes/products/$productId.tsx
 import type { LoaderFunction } from "@remix-run/node"; // or "@remix-run/cloudflare"
-import { json } from "@remix-run/node"; // or "@remix-run/cloudflare"
 import { useLoaderData } from "@remix-run/react";
+import { json } from "@remix-run/server";
 
 import { db } from "~/db.server";
 
@@ -234,8 +234,8 @@ If you picked Cloudflare Workers as your environment, [Cloudflare Key Value][clo
 
 ```tsx filename=app/routes/products/$productId.tsx
 import type { LoaderFunction } from "@remix-run/node"; // or "@remix-run/cloudflare"
-import { json } from "@remix-run/node"; // or "@remix-run/cloudflare"
 import { useLoaderData } from "@remix-run/react";
+import { json } from "@remix-run/server";
 
 export const loader: LoaderFunction = async ({
   params,
@@ -291,8 +291,8 @@ export const loader: LoaderFunction = async ({
 URL Search Params are the portion of the URL after a `?`. Other names for this are "query string", "search string", or "location search". You can access the values by creating a URL out of the `request.url`:
 
 ```tsx filename=routes/products.tsx lines=[7,8]
-import { json } from "@remix-run/node"; // or "@remix-run/cloudflare"
 import type { LoaderFunction } from "@remix-run/node"; // or "@remix-run/cloudflare"
+import { json } from "@remix-run/server";
 
 export const loader: LoaderFunction = async ({
   request,
@@ -372,7 +372,7 @@ Then the url will be: `/products/shoes?brand=nike&brand=adidas`
 Note that `brand` is repeated in the URL search string since both checkboxes were named `"brand"`. In your loader you can get access to all of those values with [`searchParams.getAll`][search-params-getall]
 
 ```tsx lines=[5]
-import { json } from "@remix-run/node"; // or "@remix-run/cloudflare"
+import { json } from "@remix-run/server";
 
 export async function loader({ request }) {
   const url = new URL(request.url);

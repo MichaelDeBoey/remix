@@ -1,4 +1,4 @@
-import { json, redirect } from "../index";
+import { json, redirect } from "../responses";
 
 describe("json", () => {
   it("sets the Content-Type header", () => {

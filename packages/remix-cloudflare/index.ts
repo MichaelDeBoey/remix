@@ -9,14 +9,14 @@ export {
   createSessionStorage,
 } from "./implementations";
 
+export { json, redirect } from "@remix-run/server";
+
 export {
   createRequestHandler,
   createSession,
   isCookie,
   isSession,
-  json,
   MaxPartSizeExceededError,
-  redirect,
   unstable_composeUploadHandlers,
   unstable_createMemoryUploadHandler,
   unstable_parseMultipartFormData,

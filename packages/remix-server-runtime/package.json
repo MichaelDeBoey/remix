@@ -15,6 +15,7 @@
   "main": "./index.js",
   "module": "./esm/index.js",
   "dependencies": {
+    "@remix-run/server": "1.5.1",
     "@types/cookie": "^0.4.0",
     "@web3-storage/multipart-parser": "^1.0.0",
     "cookie": "^0.4.1",

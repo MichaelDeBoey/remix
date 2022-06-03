@@ -330,9 +330,9 @@ In order to avoid (usually) the client-side routing "scroll flash" on refresh or
 
 This hook returns the JSON parsed data from your route loader function.
 
-```tsx lines=[2,9]
-import { json } from "@remix-run/node"; // or "@remix-run/cloudflare"
+```tsx lines=[1,9]
 import { useLoaderData } from "@remix-run/react";
+import { json } from "@remix-run/server";
 
 export async function loader() {
   return json(await fakeDb.invoices.findAll());
@@ -348,9 +348,9 @@ export default function Invoices() {
 
 This hook returns the JSON parsed data from your route action. It returns `undefined` if there hasn't been a submission at the current location yet.
 
-```tsx lines=[2,11,20]
-import { json } from "@remix-run/node"; // or "@remix-run/cloudflare"
+```tsx lines=[1,11,20]
 import { useActionData, Form } from "@remix-run/react";
+import { json } from "@remix-run/server";
 
 export async function action({ request }) {
   const body = await request.formData();
@@ -377,8 +377,8 @@ export default function Invoices() {
 The most common use-case for this hook is form validation errors. If the form isn't right, you can simply return the errors and let the user try again (instead of pushing all the errors into sessions and back out of the loader).
 
 ```tsx lines=[22, 31, 39-41, 45-47]
-import { redirect, json } from "@remix-run/node"; // or "@remix-run/cloudflare"
 import { Form, useActionData } from "@remix-run/react";
+import { json, redirect } from "@remix-run/server";
 
 export async function action({ request }) {
   const form = await request.formData();
@@ -521,9 +521,9 @@ Returns the function that may be used to submit a `<form>` (or some raw `FormDat
 
 This is useful whenever you need to programmatically submit a form. For example, you may wish to save a user preferences form whenever any field changes.
 
-```tsx filename=app/routes/prefs.tsx lines=[2,14,18]
-import { json } from "@remix-run/node"; // or "@remix-run/cloudflare"
+```tsx filename=app/routes/prefs.tsx lines=[1,14,18]
 import { useSubmit, useTransition } from "@remix-run/react";
+import { json } from "@remix-run/server";
 
 export async function loader() {
   return json(await getUserPreferences());
@@ -1432,7 +1432,7 @@ This is a shortcut for creating `application/json` responses. It assumes you are
 
 ```ts lines=[2,6]
 import type { LoaderFunction } from "@remix-run/node"; // or "@remix-run/cloudflare"
-import { json } from "@remix-run/node"; // or "@remix-run/cloudflare"
+import { json } from "@remix-run/server";
 
 export const loader: LoaderFunction = async () => {
   // So you can write this:
@@ -1469,7 +1469,7 @@ This is shortcut for sending 30x responses.
 
 ```ts lines=[2,8]
 import type { ActionFunction } from "@remix-run/node"; // or "@remix-run/cloudflare"
-import { redirect } from "@remix-run/node"; // or "@remix-run/cloudflare"
+import { redirect } from "@remix-run/server";
 
 export const action: ActionFunction = async () => {
   const userSession = await getUserSessionOrWhatever();
@@ -1800,8 +1800,8 @@ Then, you can `import` the cookie and use it in your `loader` and/or `action`. T
 **Note:** We recommend (for now) that you create all the cookies your app needs in `app/cookies.js` and `import` them into your route modules. This allows the Remix compiler to correctly prune these imports out of the browser build where they are not needed. We hope to eventually remove this caveat.
 
 ```tsx filename=app/routes/index.tsx lines=[4,8-9,15-16,20]
-import { json, redirect } from "@remix-run/node"; // or "@remix-run/cloudflare"
 import { useLoaderData } from "@remix-run/react";
+import { json, redirect } from "@remix-run/server";
 
 import { userPrefs } from "~/cookies";
 
@@ -2033,7 +2033,6 @@ Remix comes with several pre-built session storage options for common scenarios,
 This is an example of a cookie session storage:
 
 ```js filename=app/sessions.js
-// app/sessions.js
 import { createCookieSessionStorage } from "@remix-run/node"; // or "@remix-run/cloudflare"
 
 const { getSession, commitSession, destroySession } =
@@ -2066,8 +2065,8 @@ You'll use methods to get access to sessions in your `loader` and `action` funct
 A login form might look something like this:
 
 ```tsx filename=app/routes/login.js lines=[4,7-9,11,16,20,26-28,39,44,49,54]
-import { json, redirect } from "@remix-run/node"; // or "@remix-run/cloudflare"
 import { useLoaderData } from "@remix-run/react";
+import { json, redirect } from "@remix-run/server";
 
 import { getSession, commitSession } from "../sessions";
 
@@ -2471,13 +2470,13 @@ Now we can read the message in a loader.
 <docs-info>You must commit the session whenever you read a `flash`. This is different than you might be used to where some type of middleware automatically sets the cookie header for you.</docs-info>
 
 ```jsx
-import { json } from "@remix-run/node"; // or "@remix-run/cloudflare"
 import {
   Meta,
   Links,
   Scripts,
   Outlet,
 } from "@remix-run/react";
+import { json } from "@remix-run/server";
 
 import { getSession, commitSession } from "./sessions";
 
@@ -2557,13 +2556,13 @@ This component is a wrapper around React Router's Outlet with the ability to pas
 
 Here's a practical example of when you may want to use this feature. Let's say you've got a list of companies that have invoices and you want to display those companies in an accordion. We'll render our outlet in that accordion, but we want the invoice sorting to be controlled by the parent (so changing companies preserves the invoice sorting). This is a perfect use case for `<Outlet context>`.
 
-```tsx filename=app/routes/companies.tsx lines=[5,28-31,36-44,53-57,68]
-import { json } from "@remix-run/node"; // or "@remix-run/cloudflare"
+```tsx filename=app/routes/companies.tsx lines=[4,28-31,36-44,53-57,68]
 import {
   useLoaderData,
   useParams,
   Outlet,
 } from "@remix-run/react";
+import { json } from "@remix-run/server";
 import {
   Accordion,
   AccordionItem,
@@ -2642,13 +2641,13 @@ This hook returns the context from the `<Outlet />` that rendered you.
 
 Continuing from the `<Outlet context />` example above, here's what the child route could do to use the sort order.
 
-```tsx filename=app/routes/companies/$companyId.tsx lines=[5,8,25,27-30]
+```tsx filename=app/routes/companies/$companyId.tsx lines=[4,8,25,27-30]
 import type { LoaderFunction } from "@remix-run/node"; // or "@remix-run/cloudflare"
-import { json } from "@remix-run/node"; // or "@remix-run/cloudflare"
 import {
   useLoaderData,
   useOutletContext,
 } from "@remix-run/react";
+import { json } from "@remix-run/server";
 
 import type { ContextType } from "../companies";
 

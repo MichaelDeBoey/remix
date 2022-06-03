@@ -1,3 +1,5 @@
+import { json } from "@remix-run/server";
+
 import type { AppLoadContext } from "./data";
 import { callRouteAction, callRouteLoader, extractData } from "./data";
 import type { AppState } from "./errors";
@@ -11,7 +13,7 @@ import type { RouteMatch } from "./routeMatching";
 import { matchServerRoutes } from "./routeMatching";
 import type { ServerRoute } from "./routes";
 import { createRoutes } from "./routes";
-import { json, isRedirectResponse, isCatchResponse } from "./responses";
+import { isRedirectResponse, isCatchResponse } from "./responses";
 import { createServerHandoffString } from "./serverHandoff";
 
 export type RequestHandler = (

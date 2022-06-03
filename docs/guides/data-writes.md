@@ -175,9 +175,9 @@ export default function NewProject() {
 
 Now add the route action. Any form submissions that are "post" will call your data "action". Any "get" submissions (`<Form method="get">`) will be handled by your "loader".
 
-```tsx [5-11]
+```tsx lines=[5-11]
 import type { ActionFunction } from "@remix-run/node"; // or "@remix-run/cloudflare"
-import { redirect } from "@remix-run/node"; // or "@remix-run/cloudflare"
+import { redirect } from "@remix-run/server";
 
 // Note the "action" export name, this will handle our form POST
 export const action: ActionFunction = async ({
@@ -229,9 +229,9 @@ export const action: ActionFunction = async ({
 
 Just like `useLoaderData` returns the values from the `loader`, `useActionData` will return the data from the action. It will only be there if the navigation was a form submission, so you always have to check if you've got it or not.
 
-```tsx [2,11,21,26-30,38,43-47]
-import { redirect } from "@remix-run/node"; // or "@remix-run/cloudflare"
+```tsx lines=[1,11,21,26-30,38,43-47]
 import { useActionData } from "@remix-run/react";
+import { redirect } from "@remix-run/server";
 
 export const action: ActionFunction = async ({
   request,
@@ -294,9 +294,9 @@ You can ship this code as-is. The browser will handle the pending UI and interru
 
 Let's use progressive enhancement to make this UX a bit more fancy. By changing it from `<Form reloadDocument>` to `<Form>`, Remix will emulate the browser behavior with `fetch`. It will also give you access to the pending form data so you can build pending UI.
 
-```tsx [2, 11]
-import { redirect } from "@remix-run/node"; // or "@remix-run/cloudflare"
+```tsx lines=[1,11]
 import { useActionData, Form } from "@remix-run/react";
+import { redirect } from "@remix-run/server";
 
 // ...
 
@@ -318,13 +318,13 @@ If you don't have the time or drive to do the rest of the job here, use `<Form r
 
 Now let's add some pending UI so the user has a clue something happened when they submit. There's a hook called `useTransition`. When there is a pending form submission, Remix will give you the serialized version of the form as a <a href="https://developer.mozilla.org/en-US/docs/Web/API/FormData">`FormData`</a> object. You'll be most interested in the <a href="https://developer.mozilla.org/en-US/docs/Web/API/FormData/get">`formData.get()`</a> method..
 
-```tsx [5, 13, 19, 65-67]
-import { redirect } from "@remix-run/node"; // or "@remix-run/cloudflare"
+```tsx lines=[4,13,19,65-67]
 import {
   useActionData,
   Form,
   useTransition,
 } from "@remix-run/react";
+import { redirect } from "@remix-run/server";
 
 // ...
 

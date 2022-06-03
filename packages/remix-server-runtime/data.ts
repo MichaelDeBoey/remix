@@ -1,6 +1,8 @@
+import { json } from "@remix-run/server";
+
 import type { RouteMatch } from "./routeMatching";
 import type { ServerRoute } from "./routes";
-import { json, isResponse, isRedirectResponse } from "./responses";
+import { isResponse, isRedirectResponse } from "./responses";
 
 /**
  * An object of arbitrary for route loaders and actions provided by the

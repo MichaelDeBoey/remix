@@ -17,6 +17,7 @@
     "packages/remix-node",
     "packages/remix-react",
     "packages/remix-serve",
+    "packages/remix-server",
     "packages/remix-server-runtime",
     "packages/remix-vercel"
   ],

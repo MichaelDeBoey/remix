@@ -267,6 +267,81 @@ function remixDev() {
 }
 
 /** @returns {import("rollup").RollupOptions[]} */
+function remixServer() {
+  let sourceDir = "packages/remix-server";
+  let outputDir = getOutputDir("@remix-run/server");
+  let version = getVersion(sourceDir);
+
+  return [
+    {
+      external: (id) => isBareModuleId(id),
+      input: `${sourceDir}/index.ts`,
+      output: {
+        banner: createBanner("@remix-run/server", version),
+        dir: outputDir,
+        format: "cjs",
+        preserveModules: true,
+        exports: "named",
+      },
+      plugins: [
+        babel({
+          babelHelpers: "bundled",
+          exclude: /node_modules/,
+          extensions: [".ts", ".tsx"],
+        }),
+        nodeResolve({ extensions: [".ts", ".tsx"] }),
+        copy({
+          targets: [
+            { src: `LICENSE.md`, dest: outputDir },
+            { src: `${sourceDir}/package.json`, dest: outputDir },
+            { src: `${sourceDir}/README.md`, dest: outputDir },
+          ],
+        }),
+        copyToPlaygrounds(),
+      ],
+    },
+    {
+      external() {
+        return true;
+      },
+      input: `${sourceDir}/magicExports/remix.ts`,
+      output: {
+        banner: createBanner("@remix-run/server", version),
+        dir: `${outputDir}/magicExports`,
+        format: "cjs",
+      },
+      plugins: [
+        babel({
+          babelHelpers: "bundled",
+          exclude: /node_modules/,
+          extensions: [".ts", ".tsx"],
+        }),
+        copyToPlaygrounds(),
+      ],
+    },
+    {
+      external() {
+        return true;
+      },
+      input: `${sourceDir}/magicExports/remix.ts`,
+      output: {
+        banner: createBanner("@remix-run/server", version),
+        dir: `${outputDir}/magicExports/esm`,
+        format: "esm",
+      },
+      plugins: [
+        babel({
+          babelHelpers: "bundled",
+          exclude: /node_modules/,
+          extensions: [".ts", ".tsx"],
+        }),
+        copyToPlaygrounds(),
+      ],
+    },
+  ];
+}
+
+/** @returns {import("rollup").RollupOptions[]} */
 function remixServerRuntime() {
   let sourceDir = "packages/remix-server-runtime";
   let outputDir = getOutputDir("@remix-run/server-runtime");
@@ -877,6 +952,7 @@ export default function rollup(options) {
     // correct for that deploy target setup
     ...(activeOutputDir === "build" ? remix(options) : []),
     ...remixDev(options),
+    ...remixServer(options),
     ...remixServerRuntime(options),
     ...remixNode(options),
     ...remixCloudflare(options),

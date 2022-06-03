@@ -1,5 +1,6 @@
+import { isCookie } from "@remix-run/server";
+
 import type { CreateCookieFunction } from "../cookies";
-import { isCookie } from "../cookies";
 import type { SessionStorage, SessionIdStorageStrategy } from "../sessions";
 import { warnOnceAboutSigningSessionCookie, createSession } from "../sessions";
 

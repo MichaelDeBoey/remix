@@ -1942,7 +1942,8 @@ To learn more about each attribute, please see the [MDN Set-Cookie docs](https:/
 Returns `true` if an object is a Remix cookie container.
 
 ```ts
-import { isCookie } from "@remix-run/node"; // or "@remix-run/cloudflare"
+import { isCookie } from "@remix-run/server";
+
 const cookie = createCookie("user-prefs");
 console.log(isCookie(cookie));
 // true
@@ -2283,8 +2284,7 @@ This storage keeps all the cookie information in your server's memory.
 
 <docs-error>This should only be used in development. Use one of the other methods in production.</docs-error>
 
-```js
-// app/sessions.js
+```js filename=app/sessions.js
 import {
   createCookie,
   createMemorySessionStorage,

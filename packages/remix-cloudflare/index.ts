@@ -9,12 +9,18 @@ export {
   createSessionStorage,
 } from "./implementations";
 
-export { json, redirect } from "@remix-run/server";
+export type {
+  Cookie,
+  CookieOptions,
+  CookieParseOptions,
+  CookieSerializeOptions,
+  CookieSignatureOptions,
+} from "@remix-run/server";
+export { isCookie, json, redirect } from "@remix-run/server";
 
 export {
   createRequestHandler,
   createSession,
-  isCookie,
   isSession,
   MaxPartSizeExceededError,
   unstable_composeUploadHandlers,
@@ -26,11 +32,6 @@ export type {
   ActionFunction,
   AppData,
   AppLoadContext,
-  Cookie,
-  CookieOptions,
-  CookieParseOptions,
-  CookieSerializeOptions,
-  CookieSignatureOptions,
   CreateRequestHandlerFunction,
   DataFunctionArgs,
   EntryContext,

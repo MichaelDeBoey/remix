@@ -6,11 +6,6 @@ export type {
   ActionFunction,
   AppData,
   AppLoadContext,
-  Cookie,
-  CookieOptions,
-  CookieParseOptions,
-  CookieSerializeOptions,
-  CookieSignatureOptions,
   EntryContext,
   ErrorBoundaryComponent,
   HandleDataRequestFunction,
@@ -35,4 +30,4 @@ export type {
   SessionStorage,
 } from "@remix-run/server-runtime";
 
-export { createSession, isCookie, isSession } from "@remix-run/server-runtime";
+export { createSession, isSession } from "@remix-run/server-runtime";

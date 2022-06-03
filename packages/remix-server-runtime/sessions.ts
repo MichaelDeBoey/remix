@@ -1,7 +1,12 @@
-import type { CookieParseOptions, CookieSerializeOptions } from "cookie";
+import type {
+  Cookie,
+  CookieOptions,
+  CookieParseOptions,
+  CookieSerializeOptions,
+} from "@remix-run/server";
+import { isCookie } from "@remix-run/server";
 
-import type { Cookie, CookieOptions, CreateCookieFunction } from "./cookies";
-import { isCookie } from "./cookies";
+import type { CreateCookieFunction } from "./cookies";
 import { warnOnce } from "./warnings";
 
 /**

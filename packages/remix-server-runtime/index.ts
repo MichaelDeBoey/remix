@@ -1,5 +1,5 @@
 // Default implementations for the Remix server runtime interface
-export { createCookieFactory, isCookie } from "./cookies";
+export { createCookieFactory } from "./cookies";
 export {
   composeUploadHandlers as unstable_composeUploadHandlers,
   parseMultipartFormData as unstable_parseMultipartFormData,
@@ -23,7 +23,6 @@ export type {
   CreateRequestHandlerFunction,
   CreateSessionFunction,
   CreateSessionStorageFunction,
-  IsCookieFunction,
   IsSessionFunction,
 } from "./interface";
 
@@ -32,11 +31,6 @@ export type {
   ActionFunction,
   AppData,
   AppLoadContext,
-  Cookie,
-  CookieOptions,
-  CookieParseOptions,
-  CookieSerializeOptions,
-  CookieSignatureOptions,
   DataFunctionArgs,
   EntryContext,
   ErrorBoundaryComponent,
@@ -68,5 +62,14 @@ export type {
   MemoryUploadHandlerFilterArgs,
 } from "./reexport";
 
-export type { JsonFunction, RedirectFunction } from "@remix-run/server";
-export { json, redirect } from "@remix-run/server";
+export type {
+  Cookie,
+  CookieOptions,
+  CookieParseOptions,
+  CookieSerializeOptions,
+  CookieSignatureOptions,
+  IsCookieFunction,
+  JsonFunction,
+  RedirectFunction,
+} from "@remix-run/server";
+export { isCookie, json, redirect } from "@remix-run/server";

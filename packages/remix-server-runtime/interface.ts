@@ -1,4 +1,4 @@
-export type { CreateCookieFunction, IsCookieFunction } from "./cookies";
+export type { CreateCookieFunction } from "./cookies";
 export type { CreateRequestHandlerFunction } from "./server";
 export type {
   CreateSessionFunction,

@@ -2,4 +2,12 @@
 
 // Re-export everything from this package that is available in `remix`.
 
-export { json, redirect } from "@remix-run/server";
+export type {
+  Cookie,
+  CookieOptions,
+  CookieParseOptions,
+  CookieSerializeOptions,
+  CookieSignatureOptions,
+} from "@remix-run/server";
+
+export { isCookie, json, redirect } from "@remix-run/server";

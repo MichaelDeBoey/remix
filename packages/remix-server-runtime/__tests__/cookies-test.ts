@@ -1,4 +1,4 @@
-import { createCookieFactory, isCookie } from "../cookies";
+import { createCookieFactory } from "../cookies";
 import type { SignFunction, UnsignFunction } from "../crypto";
 
 const sign: SignFunction = async (value, secret) => {
@@ -18,19 +18,6 @@ const createCookie = createCookieFactory({ sign, unsign });
 function getCookieFromSetCookie(setCookie: string): string {
   return setCookie.split(/;\s*/)[0];
 }
-
-describe("isCookie", () => {
-  it("returns `true` for Cookie objects", () => {
-    expect(isCookie(createCookie("my-cookie"))).toBe(true);
-  });
-
-  it("returns `false` for non-Cookie objects", () => {
-    expect(isCookie({})).toBe(false);
-    expect(isCookie([])).toBe(false);
-    expect(isCookie("")).toBe(false);
-    expect(isCookie(true)).toBe(false);
-  });
-});
 
 describe("cookies", () => {
   it("parses/serializes empty string values", async () => {

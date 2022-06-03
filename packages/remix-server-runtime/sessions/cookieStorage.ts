@@ -1,8 +1,11 @@
-import { isCookie } from "@remix-run/server";
+import type {
+  SessionIdStorageStrategy,
+  SessionStorage,
+} from "@remix-run/server";
+import { isCookie, createSession } from "@remix-run/server";
 
 import type { CreateCookieFunction } from "../cookies";
-import type { SessionStorage, SessionIdStorageStrategy } from "../sessions";
-import { warnOnceAboutSigningSessionCookie, createSession } from "../sessions";
+import { warnOnceAboutSigningSessionCookie } from "../sessions";
 
 interface CookieSessionStorageOptions {
   /**

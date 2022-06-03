@@ -5,11 +5,7 @@ export {
   parseMultipartFormData as unstable_parseMultipartFormData,
 } from "./formData";
 export { createRequestHandler } from "./server";
-export {
-  createSession,
-  isSession,
-  createSessionStorageFactory,
-} from "./sessions";
+export { createSessionStorageFactory } from "./sessions";
 export { createCookieSessionStorageFactory } from "./sessions/cookieStorage";
 export { createMemorySessionStorageFactory } from "./sessions/memoryStorage";
 export { createMemoryUploadHandler as unstable_createMemoryUploadHandler } from "./upload/memoryUploadHandler";
@@ -21,9 +17,7 @@ export type {
   CreateCookieSessionStorageFunction,
   CreateMemorySessionStorageFunction,
   CreateRequestHandlerFunction,
-  CreateSessionFunction,
   CreateSessionStorageFunction,
-  IsSessionFunction,
 } from "./interface";
 
 // Remix server runtime packages should re-export these types
@@ -50,10 +44,6 @@ export type {
   RouteHandle,
   ServerBuild,
   ServerEntryModule,
-  Session,
-  SessionData,
-  SessionIdStorageStrategy,
-  SessionStorage,
   SignFunction,
   UnsignFunction,
   UploadHandlerPart,
@@ -68,8 +58,20 @@ export type {
   CookieParseOptions,
   CookieSerializeOptions,
   CookieSignatureOptions,
+  CreateSessionFunction,
   IsCookieFunction,
+  IsSessionFunction,
   JsonFunction,
   RedirectFunction,
+  Session,
+  SessionData,
+  SessionIdStorageStrategy,
+  SessionStorage,
 } from "@remix-run/server";
-export { isCookie, json, redirect } from "@remix-run/server";
+export {
+  createSession,
+  isCookie,
+  isSession,
+  json,
+  redirect,
+} from "@remix-run/server";

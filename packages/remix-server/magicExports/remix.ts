@@ -8,6 +8,16 @@ export type {
   CookieParseOptions,
   CookieSerializeOptions,
   CookieSignatureOptions,
+  Session,
+  SessionData,
+  SessionIdStorageStrategy,
+  SessionStorage,
 } from "@remix-run/server";
 
-export { isCookie, json, redirect } from "@remix-run/server";
+export {
+  createSession,
+  isCookie,
+  isSession,
+  json,
+  redirect,
+} from "@remix-run/server";

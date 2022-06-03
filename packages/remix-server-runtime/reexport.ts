@@ -38,10 +38,3 @@ export type {
 } from "./routeModules";
 
 export type { RequestHandler } from "./server";
-
-export type {
-  Session,
-  SessionData,
-  SessionIdStorageStrategy,
-  SessionStorage,
-} from "./sessions";

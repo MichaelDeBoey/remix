@@ -41,13 +41,21 @@ export type {
   CookieParseOptions,
   CookieSerializeOptions,
   CookieSignatureOptions,
+  Session,
+  SessionData,
+  SessionIdStorageStrategy,
+  SessionStorage,
 } from "@remix-run/server";
-export { isCookie, json, redirect } from "@remix-run/server";
+export {
+  createSession,
+  isCookie,
+  isSession,
+  json,
+  redirect,
+} from "@remix-run/server";
 
 export {
   createRequestHandler,
-  createSession,
-  isSession,
   MaxPartSizeExceededError,
   unstable_composeUploadHandlers,
   unstable_createMemoryUploadHandler,
@@ -80,10 +88,6 @@ export type {
   RouteHandle,
   ServerBuild,
   ServerEntryModule,
-  Session,
-  SessionData,
-  SessionIdStorageStrategy,
-  SessionStorage,
   UploadHandler,
   UploadHandlerPart,
 } from "@remix-run/server-runtime";

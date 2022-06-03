@@ -1,9 +1,10 @@
 import type {
   SessionData,
-  SessionStorage,
   SessionIdStorageStrategy,
-  CreateSessionStorageFunction,
-} from "../sessions";
+  SessionStorage,
+} from "@remix-run/server";
+
+import type { CreateSessionStorageFunction } from "../sessions";
 
 interface MemorySessionStorageOptions {
   /**

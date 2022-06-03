@@ -2193,7 +2193,7 @@ TODO:
 Returns `true` if an object is a Remix session.
 
 ```js
-import { isSession } from "@remix-run/node"; // or "@remix-run/cloudflare"
+import { isSession } from "@remix-run/server";
 
 const sessionData = { foo: "bar" };
 const session = createSession(sessionData, "remix-session");

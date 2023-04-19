@@ -12,7 +12,7 @@ index 3a37c62..63e91f2 100644
  }
  
 diff --git a/node_modules/@changesets/assemble-release-plan/dist/assemble-release-plan.cjs.prod.js b/node_modules/@changesets/assemble-release-plan/dist/assemble-release-plan.cjs.prod.js
-index 87b4c10..e970ddd 100644
+index 87b4c10..004a815 100644
 --- a/node_modules/@changesets/assemble-release-plan/dist/assemble-release-plan.cjs.prod.js
 +++ b/node_modules/@changesets/assemble-release-plan/dist/assemble-release-plan.cjs.prod.js
 @@ -130,7 +130,7 @@ function getDependencyVersionRanges(dependentPkgJSON, dependencyRelease) {

@@ -1,3 +1,5 @@
+export { defaultConfig } from "./defaultConfig";
+
 export type {
   createPagesFunctionHandlerParams,
   GetLoadContextFunction,

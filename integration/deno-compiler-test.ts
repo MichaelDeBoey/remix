@@ -37,6 +37,7 @@ test.beforeAll(async () => {
     template: "deno-template",
     files: {
       "package.json": json({
+        name: "remix-template-deno",
         private: true,
         sideEffects: false,
         type: "module",

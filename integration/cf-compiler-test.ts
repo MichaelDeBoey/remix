@@ -34,11 +34,10 @@ test.describe("cloudflare compiler", () => {
           name: "remix-template-cloudflare-workers",
           private: true,
           sideEffects: false,
-          main: "build/index.js",
           type: "module",
           dependencies: {
+            "@cloudflare/kv-asset-handler": "0.0.0-local-version",
             "@remix-run/cloudflare": "0.0.0-local-version",
-            "@remix-run/cloudflare-workers": "0.0.0-local-version",
             "@remix-run/react": "0.0.0-local-version",
             isbot: "0.0.0-local-version",
             react: "0.0.0-local-version",
@@ -50,7 +49,6 @@ test.describe("cloudflare compiler", () => {
           },
           devDependencies: {
             "@remix-run/dev": "0.0.0-local-version",
-            "@remix-run/eslint-config": "0.0.0-local-version",
           },
         }),
         "app/routes/_index.tsx": js`

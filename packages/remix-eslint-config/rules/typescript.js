@@ -12,7 +12,7 @@ module.exports = {
   "no-var": "off",
   "prefer-rest-params": "off",
 
-  // These rules are nice and we want to configure over the defaults
+  // These rules are nice, and we want to configure over the defaults
   "@typescript-eslint/no-use-before-define": [
     "error",
     {

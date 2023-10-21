@@ -6,9 +6,8 @@ module.exports = {
   root: true,
   extends: [
     require.resolve("./packages/remix-eslint-config/internal.js"),
-    "plugin:markdown/recommended",
+    // "plugin:markdown/recommended",
   ],
-  plugins: ["markdown"],
   settings: {
     "import/internal-regex": "^~/",
   },
@@ -16,12 +15,11 @@ module.exports = {
     {
       files: ["**/*.md/**"],
       rules: {
-        "import/no-extraneous-dependencies": OFF,
         "no-dupe-keys": OFF,
-        "no-undef": OFF,
-        "no-unused-expressions": OFF,
-        "no-unused-vars": OFF,
+
         "@typescript-eslint/no-redeclare": OFF,
+
+        "import/no-extraneous-dependencies": OFF,
       },
     },
     {

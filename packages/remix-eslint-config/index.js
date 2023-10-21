@@ -20,15 +20,15 @@ const OFF = 0;
 
 /** @type {import('eslint').Linter.Config} */
 const config = {
-  parser: "@babel/eslint-parser",
-  parserOptions: {
-    sourceType: "module",
-    requireConfigFile: false,
-    ecmaVersion: "latest",
-    babelOptions: {
-      presets: [require.resolve("@babel/preset-react")],
-    },
-  },
+  // parser: "@babel/eslint-parser",
+  // parserOptions: {
+  //   sourceType: "module",
+  //   requireConfigFile: false,
+  //   ecmaVersion: "latest",
+  //   babelOptions: {
+  //     presets: [require.resolve("@babel/preset-react")],
+  //   },
+  // },
   env: {
     browser: true,
     commonjs: true,
@@ -41,7 +41,7 @@ const config = {
   },
 
   // NOTE: In general - we want to use prettier for the majority of stylistic
-  // concerns.  However there are some "stylistic" eslint rules we use that should
+  // concerns.  However, there are some "stylistic" eslint rules we use that should
   // not fail a PR since we can auto-fix them after merging to dev.  These rules
   // should be set to WARN.
   //
@@ -69,7 +69,7 @@ const config = {
       parser: "@typescript-eslint/parser",
       parserOptions: {
         sourceType: "module",
-        ecmaVersion: 2019,
+        ecmaVersion: 2022,
       },
       plugins: ["@typescript-eslint"],
       rules: {

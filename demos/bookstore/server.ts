@@ -1,7 +1,7 @@
 import * as http from 'node:http'
 import { createRequestListener } from '@remix-run/node-fetch-server'
 
-import { router } from './app/router.ts'
+import { router } from './router.ts'
 
 let server = http.createServer(
   createRequestListener(async (request) => {
@@ -24,3 +24,16 @@ server.listen(port, () => {
   console.log('  Customer: customer@example.com / password123')
   console.log('')
 })
+
+function shutdown() {
+  server.close(() => {
+    process.exit(0)
+  })
+
+  setTimeout(() => {
+    process.exit(1)
+  }, 10000)
+}
+
+process.on('SIGINT', shutdown)
+process.on('SIGTERM', shutdown)

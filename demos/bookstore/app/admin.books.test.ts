@@ -1,7 +1,7 @@
 import * as assert from 'node:assert/strict'
 import { describe, it } from 'node:test'
 
-import { router } from './router.ts'
+import { router } from '../router.ts'
 import { loginAsAdmin, requestWithSession } from '../test/helpers.ts'
 
 describe('admin books handlers', () => {

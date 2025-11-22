@@ -1,4 +1,5 @@
 import { createRouter } from '@remix-run/fetch-router'
+import { assets } from '@remix-run/assets-middleware'
 import { asyncContext } from '@remix-run/async-context-middleware'
 import { formData } from '@remix-run/form-data-middleware'
 import { logger } from '@remix-run/logger-middleware'
@@ -6,25 +7,48 @@ import { methodOverride } from '@remix-run/method-override-middleware'
 import { session } from '@remix-run/session-middleware'
 import { staticFiles } from '@remix-run/static-middleware'
 
-import { routes } from '../routes.ts'
-import { sessionCookie, sessionStorage } from './utils/session.ts'
-import { uploadHandler } from './utils/uploads.ts'
+import { routes } from './routes.ts'
+import { sessionCookie, sessionStorage } from './app/utils/session.ts'
+import { uploadHandler } from './app/utils/uploads.ts'
 
-import adminHandlers from './admin.tsx'
-import accountHandlers from './account.tsx'
-import authHandlers from './auth.tsx'
-import booksHandlers from './books.tsx'
-import cartHandlers from './cart.tsx'
-import checkoutHandlers from './checkout.tsx'
-import fragmentsHandlers from './fragments.tsx'
-import * as marketingHandlers from './marketing.tsx'
-import { uploadsHandler } from './uploads.tsx'
+import accountHandlers from './app/account.tsx'
+import adminHandlers from './app/admin.tsx'
+import authHandlers from './app/auth.tsx'
+import booksHandlers from './app/books.tsx'
+import cartHandlers from './app/cart.tsx'
+import checkoutHandlers from './app/checkout.tsx'
+import fragmentsHandlers from './app/fragments.tsx'
+import * as marketingHandlers from './app/marketing.tsx'
+import { uploadsHandler } from './app/uploads.tsx'
+
+let isDev = process.env.NODE_ENV === 'development'
 
 let middleware = []
 
-if (process.env.NODE_ENV === 'development') {
+if (isDev) {
   middleware.push(logger())
 }
+
+// Build and serve browser assets with esbuild
+middleware.push(
+  assets(
+    {
+      entryPoints: ['app/assets/**/*'],
+      outbase: 'app/assets',
+      outdir: 'public/assets',
+      bundle: true,
+      minify: !isDev,
+      splitting: true,
+      format: 'esm',
+      entryNames: '[dir]/[name]',
+      chunkNames: 'chunks/[name]-[hash]',
+      sourcemap: isDev,
+    },
+    {
+      watch: isDev,
+    },
+  ),
+)
 
 middleware.push(
   staticFiles('./public', {

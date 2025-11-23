@@ -32,6 +32,13 @@ let router = createRouter({
 
 The middleware accepts an esbuild configuration object as the first argument. It will run the build once on the first request and serve the built files from memory.
 
+The built assets will be served from the URL path corresponding to the `outdir`. For example, with `outdir: 'public/assets'`, you can reference the built files in your HTML:
+
+```html
+<script type="module" src="/assets/app.js"></script>
+<link rel="stylesheet" href="/assets/styles.css" />
+```
+
 ### Development Mode
 
 Use the `watch: true` option to enable watch mode for development:
@@ -56,33 +63,10 @@ let router = createRouter({
 })
 ```
 
-In watch mode, esbuild will rebuild the assets whenever source files change, and the middleware will serve the updated files automatically.
+In watch mode, esbuild will rebuild the assets whenever source files change, and the middleware will serve the updated files on the next request. The built assets are served with `Cache-Control: no-cache` headers in watch mode to ensure browsers always fetch the latest version.
 
-### Example: Multiple Asset Bundles
-
-```ts
-import { createRouter } from '@remix-run/fetch-router'
-import { assets } from '@remix-run/assets-middleware'
-
-let isDev = process.env.NODE_ENV !== 'production'
-
-let router = createRouter({
-  middleware: [
-    // Client-side JavaScript
-    assets(
-      {
-        entryPoints: ['app/assets/app.tsx'],
-        outdir: 'public/assets',
-        bundle: true,
-        minify: !isDev,
-        splitting: true,
-        format: 'esm',
-        sourcemap: isDev,
-      },
-      { watch: isDev },
-    ),
-  ],
-})
+```html
+<script type="module" src="/assets/app.js"></script>
 ```
 
 ## Related Packages

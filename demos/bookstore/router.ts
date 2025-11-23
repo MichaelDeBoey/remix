@@ -29,7 +29,6 @@ if (isDev) {
   middleware.push(logger())
 }
 
-// Build and serve browser assets with esbuild
 middleware.push(
   assets(
     {

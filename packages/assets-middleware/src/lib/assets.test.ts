@@ -1,13 +1,9 @@
 import * as assert from 'node:assert/strict'
-import * as path from 'node:path'
 import { describe, it } from 'node:test'
-import { fileURLToPath } from 'node:url'
 import { createRouter } from '@remix-run/fetch-router'
 
+import { fixtures } from '../../test/fixtures/utils.ts'
 import { assets } from './assets.ts'
-
-let __dirname = path.dirname(fileURLToPath(import.meta.url))
-let fixturesDir = path.join(__dirname, 'test-fixtures', 'assets')
 
 describe('assets middleware', () => {
   describe('basic functionality', () => {
@@ -15,7 +11,7 @@ describe('assets middleware', () => {
       let router = createRouter({
         middleware: [
           assets({
-            entryPoints: [path.join(fixturesDir, 'page.ts')],
+            entryPoints: [fixtures.page],
             outdir: 'public/assets',
             bundle: true,
             format: 'esm',
@@ -36,7 +32,7 @@ describe('assets middleware', () => {
       let router = createRouter({
         middleware: [
           assets({
-            entryPoints: [path.join(fixturesDir, 'page.ts'), path.join(fixturesDir, 'app.tsx')],
+            entryPoints: [fixtures.page, fixtures.app],
             outdir: 'public/assets',
             bundle: true,
             format: 'esm',
@@ -57,7 +53,7 @@ describe('assets middleware', () => {
       let router = createRouter({
         middleware: [
           assets({
-            entryPoints: [path.join(fixturesDir, 'styles.css')],
+            entryPoints: [fixtures.styles],
             outdir: 'public/assets',
             bundle: true,
           }),
@@ -77,7 +73,7 @@ describe('assets middleware', () => {
       let router = createRouter({
         middleware: [
           assets({
-            entryPoints: [path.join(fixturesDir, 'app.tsx')],
+            entryPoints: [fixtures.app],
             outdir: 'public/assets',
             bundle: true,
             format: 'esm',
@@ -98,7 +94,7 @@ describe('assets middleware', () => {
       let router = createRouter({
         middleware: [
           assets({
-            entryPoints: [path.join(fixturesDir, 'page.ts')],
+            entryPoints: [fixtures.page],
             outdir: 'public/assets',
             bundle: true,
             format: 'esm',
@@ -115,7 +111,7 @@ describe('assets middleware', () => {
       let router = createRouter({
         middleware: [
           assets({
-            entryPoints: [path.join(fixturesDir, 'page.ts')],
+            entryPoints: [fixtures.page],
             outdir: 'public/assets',
             bundle: true,
             format: 'esm',
@@ -134,7 +130,7 @@ describe('assets middleware', () => {
       let router = createRouter({
         middleware: [
           assets({
-            entryPoints: [path.join(fixturesDir, 'page.ts')],
+            entryPoints: [fixtures.page],
             outdir: 'public/assets',
             bundle: true,
             format: 'esm',
@@ -151,7 +147,7 @@ describe('assets middleware', () => {
     it('sets no-cache headers in watch mode', async () => {
       let middleware = assets(
         {
-          entryPoints: [path.join(fixturesDir, 'page.ts')],
+          entryPoints: [fixtures.page],
           outdir: 'public/assets',
           bundle: true,
           format: 'esm',
@@ -180,7 +176,7 @@ describe('assets middleware', () => {
       let router = createRouter({
         middleware: [
           assets({
-            entryPoints: [path.join(fixturesDir, 'page.ts')],
+            entryPoints: [fixtures.page],
             outdir: 'public/assets',
             bundle: true,
             format: 'esm',
@@ -203,7 +199,7 @@ describe('assets middleware', () => {
       let router = createRouter({
         middleware: [
           assets({
-            entryPoints: [path.join(fixturesDir, 'page.ts')],
+            entryPoints: [fixtures.page],
             outdir: 'public/assets',
             bundle: true,
             format: 'esm',
@@ -220,7 +216,7 @@ describe('assets middleware', () => {
       let router = createRouter({
         middleware: [
           assets({
-            entryPoints: [path.join(fixturesDir, 'styles.css')],
+            entryPoints: [fixtures.styles],
             outdir: 'public/assets',
             bundle: true,
           }),
@@ -238,7 +234,7 @@ describe('assets middleware', () => {
       let router = createRouter({
         middleware: [
           assets({
-            entryPoints: [path.join(fixturesDir, 'page.ts')],
+            entryPoints: [fixtures.page],
             outdir: 'public/assets',
             bundle: true,
             format: 'esm',
@@ -260,7 +256,7 @@ describe('assets middleware', () => {
       let router = createRouter({
         middleware: [
           assets({
-            entryPoints: [path.join(fixturesDir, 'app.tsx')],
+            entryPoints: [fixtures.app],
             outdir: 'public/assets',
             bundle: true,
             format: 'esm',
@@ -280,7 +276,7 @@ describe('assets middleware', () => {
       let router = createRouter({
         middleware: [
           assets({
-            entryPoints: [path.join(fixturesDir, 'page.ts')],
+            entryPoints: [fixtures.page],
             outdir: 'public/assets',
             bundle: true,
             format: 'esm',
@@ -310,7 +306,7 @@ describe('assets middleware', () => {
       let router = createRouter({
         middleware: [
           assets({
-            entryPoints: [path.join(fixturesDir, 'page.ts')],
+            entryPoints: [fixtures.page],
             outdir: 'public/assets',
             bundle: true,
             format: 'esm',

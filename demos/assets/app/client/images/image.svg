@@ -1,12 +1,1 @@
-<svg
-  xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 120 120"
-  fill="none"
-  color="#0EA5E9"
-  role="img"
-  aria-labelledby="title"
->
-  <title id="title">Demo image</title>
-  <rect x="12" y="12" width="96" height="96" rx="24" fill="currentColor" />
-  <circle cx="60" cy="60" r="24" fill="#F8FAFC" />
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" aria-labelledby="title" color="#0EA5E9" role="img" viewBox="0 0 120 120"><title id="title">Demo image</title><rect width="96" height="96" x="12" y="12" fill="currentColor" rx="24"/><circle cx="60" cy="60" r="24" fill="#F8FAFC"/></svg>
